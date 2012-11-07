@@ -1,0 +1,5 @@
+adapter:  pg
+database: squid
+username: paranormal
+password:
+host:     localhost
