@@ -10,4 +10,8 @@ class Rows
     Hash[*@line.split]
   end
 
+  def save
+    Access.new(self.rows).save
+  end
+
 end

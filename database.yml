@@ -1,4 +1,4 @@
-adapter:  pg
+adapter:  postgresql
 database: squid
 username: paranormal
 password:

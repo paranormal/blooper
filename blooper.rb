@@ -1,17 +1,18 @@
-#!/usr/bin/env ruby
+#!/usr/local/bin/ruby
 # encoding: utf-8
 
-$:.unshift File.dirname(__FILE__) + '/lib'
-
-require "ap"
-require "get_input.rb"
-require "rows.rb"
+$:.unshift File.dirname(__FILE__)
 
 require "pg"
 require "active_record"
 
-dbconfig = YAML::load(File.open('database.yml'))
+require "lib/input.rb"
+require "lib/rows.rb"
+require "model/access.rb"
+
+dbconfig = YAML::load(File.open(File.dirname(__FILE__) + '/database.yml'))
 ActiveRecord::Base.establish_connection(dbconfig)
 
-line = GetInput.new.detect
-ap Rows.new(line).rows
+Input.new(STDIN).each do |rows|
+  rows.save
+end
