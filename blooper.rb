@@ -3,6 +3,8 @@
 
 $:.unshift File.dirname(__FILE__)
 
+require "rubygems"
+require "bundler/setup"
 require "pg"
 require "active_record"
 

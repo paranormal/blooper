@@ -1,9 +1,7 @@
 class Rows
 
-  REG = Regexp.new('.*squid\[\d+\]:\s')
-
   def initialize(line)
-    @line = line.sub(REG, '')
+    @line = line
   end
 
   def rows

@@ -2,4 +2,4 @@ adapter:  postgresql
 database: squid
 username: paranormal
 password:
-host:     localhost
+host:     db
