@@ -1,17 +1,20 @@
 #!/usr/local/bin/ruby
 # encoding: utf-8
 
-require "bundler/setup"
+cwd = File.dirname(__FILE__)
+
+ENV['BUNDLE_GEMFILE'] ||= cwd + '/Gemfile'
+require "bundler"
 Bundler.require
 
-cwd = File.dirname(__FILE__)
 $:.unshift cwd
-
 require "lib/database.rb"
 require "lib/input.rb"
 require "lib/rows.rb"
 require "model/access.rb"
 
- Input.new(STDIN).each do |rows|
+Database.connect
+
+Input.new(STDIN).each do |rows|
   rows.save
 end
