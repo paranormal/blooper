@@ -1,5 +1,0 @@
-adapter:  postgresql
-database: squid
-username: paranormal
-password:
-host:     db
