@@ -1,23 +1,14 @@
 class Input
 
-  REG = Regexp.new('^L')
-
   def initialize(input)
     @input = input
   end
 
   def each
     @input.each do |line|
-      yield Rows.new(self.clean(line)) if self.valid?(line)
+      line = Line.new(line)
+      yield Rows.new(line.clean) if line.valid?
     end
-  end
-
-  def valid?(line)
-    line.match(REG)
-  end
-
-  def clean(line)
-    line.sub(REG, '')
   end
 
 end
