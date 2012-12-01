@@ -11,6 +11,7 @@ Bundler.require(:default)
 $:.unshift(path.parent.join('lib'))
 require "database.rb"
 require "input.rb"
+require "line.rb"
 require "rows.rb"
 require "model/access.rb"
 
