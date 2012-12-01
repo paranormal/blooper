@@ -1,4 +1,10 @@
 source "http://rubygems.org"
 
-gem 'pg',           require: 'pg'
-gem 'activerecord', require: 'active_record'
+group :default do
+  gem 'pg'
+  gem 'activerecord', require: 'active_record'
+end
+
+group :test do
+  gem 'rspec'
+end

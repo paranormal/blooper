@@ -1,13 +1,4 @@
-cwd = File.dirname(__FILE__)
-require "database.rb"
-require "input.rb"
-require "line.rb"
-require "rows.rb"
-
-ENV['BUNDLE_GEMFILE'] ||= cwd + '/../Gemfile'
-require "bundler"
-Bundler.require
-
+require "line"
 describe Line do
 
   before(:all) do
@@ -27,9 +18,8 @@ describe Line do
 end
 
 
-  # it "sums the prices of its line items" do
-    # exmplString := 'Sep 23 19:00:32 db squid[52035]: 1348416032.906'.
-    # exampleString := 'Sep 23 19:00:33 db squid[52035]: 1348416033.308    285 192.168.11.6 TCP_MISS 200 251 GET http://ode.com/rzhanye.html - DIRECT 64.215.255.33 image/gif'.
-    # order.total.should eq(Money.new(5.55, :USD))
-  # end
-
+require "database.rb"
+describe Database do
+  it "should connect" do
+  end
+end
