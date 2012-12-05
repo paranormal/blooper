@@ -1,0 +1,65 @@
+--
+-- PostgreSQL database dump
+--
+
+SET statement_timeout = 0;
+SET client_encoding = 'UTF8';
+SET standard_conforming_strings = on;
+SET check_function_bodies = false;
+SET client_min_messages = warning;
+
+CREATE EXTENSION IF NOT EXISTS plpgsql WITH SCHEMA pg_catalog;
+
+COMMENT ON EXTENSION plpgsql IS 'PL/pgSQL procedural language';
+
+SET search_path = public, pg_catalog;
+
+SET default_tablespace = '';
+
+SET default_with_oids = false;
+
+CREATE TABLE accesses (
+    id integer NOT NULL,
+    "time" numeric(15,3),
+    response_time integer,
+    src_ip character(15),
+    squid_request_status character varying(50),
+    http_status_code character varying(10),
+    reply_size bigint,
+    request_method character varying(20),
+    request_url character varying(2083),
+    username character varying(40),
+    squid_hier_code character varying(20),
+    dst_ip character(15),
+    mime_type character varying(50)
+);
+
+
+CREATE SEQUENCE accesses_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER SEQUENCE accesses_id_seq OWNED BY accesses.id;
+
+
+ALTER TABLE ONLY accesses ALTER COLUMN id SET DEFAULT nextval('accesses_id_seq'::regclass);
+
+
+--
+-- Name: public; Type: ACL; Schema: -; Owner: pgsql
+--
+
+REVOKE ALL ON SCHEMA public FROM PUBLIC;
+REVOKE ALL ON SCHEMA public FROM pgsql;
+GRANT ALL ON SCHEMA public TO pgsql;
+GRANT ALL ON SCHEMA public TO PUBLIC;
+
+
+--
+-- PostgreSQL database dump complete
+--
+
