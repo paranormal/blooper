@@ -1,0 +1,12 @@
+#!/usr/local/bin/ruby
+# encoding: utf-8
+
+require 'pg'
+require 'active_record'
+require_relative '../lib/blooper'
+
+Blooper.connect_db
+
+Blooper::Input.new(STDIN).each do |rows|
+  rows.save
+end
