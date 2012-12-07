@@ -5,24 +5,19 @@ squid access log into a database (I believe any ar database).
 
 The idea shamelessly stolen from {logmysqldaemon}[http://sourceforge.net/projects/logmysqldaemon/] script.
 
-== Ruby libraries
+== Installation
 
-1. Install bundler first
-
-    bundler
-
-2. Go to blooper root directory and run:
-
-    bundler install --path=vendor
+    I make gem when I provide logger support.
+    (cd blooper && gem build blooper.gemspec && gem install blooper-1.1.gem)
 
 == Squid configuration
 
-1. The column names are dynamic and writes down in squid logformat.
-Here time is table, %ts.%03tu is value that will have been written into that table.
+1. The column names are dynamic, you should put it down into squid logformat.
+Here time is column, %ts.%03tu is value that will have been written into that column.
 
     logformat squid_log time %ts.%03tu response_time %tr src_ip %>a squid_request_status %Ss http_status_code %03>Hs reply_size %<st request_method %rm request_url %ru username %un squid_hier_code %Sh dst_ip %<a mime_type %mt
 
-2. Blooper configuration. This string contain database access information, and
+2. Blooper configuration. This string contains database access information, and
 squid will be put it down into cache.log. I wish I known how to hide it.
 
     access_log daemon:{adapter:postgresql,database:squid,username:squid,password:squid,host:db' squid_log
@@ -30,26 +25,15 @@ squid will be put it down into cache.log. I wish I known how to hide it.
 
 3. Path to blooper executable.
 
-    logfile_daemon /home/blooper/blooper.rb
+    #path to executable
+    $ which blooper
+    /usr/local/bin/blooper
+
+    in squid.conf:
+    logfile_daemon /usr/local/bin/blooper
 
 
 == Database configuration
 
-1. Table name have to be named access. Columns defines in squid.conf's logformat
-directive. It can be like:
-
-   id                   | integer                 | not null default nextval('accesses_id_seq'::regclass)
-   time                 | numeric(15,3)           |
-   response_time        | integer                 |
-   src_ip               | character(15)           |
-   squid_request_status | character varying(50)   |
-   http_status_code     | character varying(10)   |
-   reply_size           | bigint                  |
-   request_method       | character varying(20)   |
-   request_url          | character varying(2083) |
-   username             | character varying(40)   |
-   squid_hier_code      | character varying(20)   |
-   dst_ip               | character(15)           |
-   mime_type            | character varying(50)   |
-
-
+    createdb squid
+    psql squid < pg.schema
