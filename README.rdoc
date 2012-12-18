@@ -17,8 +17,7 @@ Here time is column, %ts.%03tu is value that will have been written into that co
 
     logformat squid_log time %ts.%03tu response_time %tr src_ip %>a squid_request_status %Ss http_status_code %03>Hs reply_size %<st request_method %rm request_url %ru username %un squid_hier_code %Sh dst_ip %<a mime_type %mt
 
-2. Blooper configuration. This string contains database access information, and
-squid will be put it down into cache.log. I wish I known how to hide it.
+2. Blooper configuration. This string contains database access information, and squid will be put them down into cache.log. I wish I known how to hide it.
 
     access_log daemon:{adapter:postgresql,database:squid,username:squid,password:squid,host:db' squid_log
 

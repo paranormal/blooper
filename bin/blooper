@@ -1,5 +1,6 @@
 #!/usr/bin/env ruby
 
+# $VERBOSE = true
 require 'pg'
 require 'active_record'
 require_relative '../lib/blooper'
@@ -7,5 +8,10 @@ require_relative '../lib/blooper'
 Blooper.connect_db
 
 Blooper::Input.new(STDIN).each do |rows|
-  rows.save
+  begin
+    rows.save
+  rescue ActiveRecord::StatementInvalid
+    Blooper.reconnect_db!
+    retry
+  end
 end
