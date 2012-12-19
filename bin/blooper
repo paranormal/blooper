@@ -1,17 +1,12 @@
 #!/usr/bin/env ruby
 
 # $VERBOSE = true
+# require "ap"
+# require "bundler/setup"
+
+require 'logger'
 require 'pg'
 require 'active_record'
 require_relative '../lib/blooper'
 
-Blooper.connect_db
-
-Blooper::Input.new(STDIN).each do |rows|
-  begin
-    rows.save
-  rescue ActiveRecord::StatementInvalid
-    Blooper.reconnect_db!
-    retry
-  end
-end
+Blooper::Application.new.start

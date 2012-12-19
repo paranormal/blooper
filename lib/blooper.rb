@@ -4,15 +4,36 @@ require_relative 'blooper/rows.rb'
 require_relative 'blooper/model/access.rb'
 
 module Blooper
-  class << self
+  class Application < Logger::Application
 
-    def connect_db
-      ActiveRecord::Base
-        .establish_connection(YAML.load(ARGV.join(" ").gsub(/:/, ': ')))
+    def initialize
+      super(self.class.name)
+      logger!
+      connect!
     end
 
-    def reconnect_db!
-      ActiveRecord::Base.connection.reconnect!
+    def logger!
+      level = $VERBOSE && Logger::DEBUG || Logger::INFO
+      $log = @log
+    end
+
+    def connect!
+      $log.info('establishing the database connection')
+      ActiveRecord::Base
+        .establish_connection(YAML.load(ARGV.join(" ").gsub(/:/, ': ')))
+      $log.info('a database connection has been initialized')
+    end
+
+    def run
+      Input.new(STDIN).each do |rows|
+        begin
+          rows.save
+        rescue ActiveRecord::StatementInvalid
+          $log.warn('a database connection has been lost')
+          provide_db
+          redo
+        end
+      end
     end
 
   end

@@ -19,7 +19,7 @@ Here time is column, %ts.%03tu is value that will have been written into that co
 
 2. Blooper configuration. This string contains database access information, and squid will be put them down into cache.log. I wish I known how to hide it.
 
-    access_log daemon:{adapter:postgresql,database:squid,username:squid,password:squid,host:db' squid_log
+    access_log daemon:{adapter:postgresql,database:squid,username:squid,password:squid,host:db} squid_log
 
 
 3. Path to blooper executable.
