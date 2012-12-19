@@ -1,7 +1,7 @@
 module Blooper
   class Rows
 
-    def initialize(line)
+    def initialize(line = STDIN)
       @line = line
     end
 
@@ -10,11 +10,7 @@ module Blooper
     end
 
     def save
-      if Access.new(rows).save
-        $log.debug('Data was saved')
-      end
-    rescue => e
-      $log.error("Data wasn't saved => " + e.message)
+      $log.debug('Data was saved') if Access.new(rows).save!
     end
 
   end
