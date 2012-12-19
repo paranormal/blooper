@@ -9,6 +9,7 @@ module Blooper
     def initialize
       super(self.class.name)
       self.level = $VERBOSE && Logger::DEBUG || Logger::INFO
+      self.logger.datetime_format = "%Y-%m-%d %H:%M:%S "
       $log = @log
     end
 
@@ -17,7 +18,7 @@ module Blooper
       $log.debug('Database credential => ' + ARGV.to_s)
       ActiveRecord::Base
         .establish_connection(YAML.load(ARGV.join(" ").gsub(/:/, ': ')))
-      $log.info('A database connection has been initialized')
+      $log.info('A database connection has been initializing')
     end
 
     def run
