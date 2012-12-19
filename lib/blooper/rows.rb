@@ -6,18 +6,15 @@ module Blooper
     end
 
     def rows
-      $log.debug(@line.split)
       Hash[*@line.split]
-    rescue
-      $log.error("received string isn't correct hash: " + @line.split)
     end
 
     def save
       if Access.new(rows).save
-        $log.debug('data was successfully saved into database')
+        $log.debug('Data was saved')
       end
     rescue => e
-      $log.error("can't save into database" + rows)
+      $log.error("Data wasn't saved => " + e.message)
     end
 
   end

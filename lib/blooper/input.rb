@@ -7,8 +7,9 @@ module Blooper
 
     def each
       @input.each do |line|
-        $log.debug('received log string: ' + line)
+        $log.debug('Log string => ' + line)
         line = Line.new(line)
+        $log.debug('Log string is ' + (line.valid? ? '' : 'in') + 'valid')
         yield Rows.new(line.clean) if line.valid?
       end
     end

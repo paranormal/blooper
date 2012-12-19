@@ -8,7 +8,7 @@ module Blooper
     end
 
     def valid?
-      @line.match(REG)
+      @line.match(REG) && @line.split.size.even?
     end
 
     def clean

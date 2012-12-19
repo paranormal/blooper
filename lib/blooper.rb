@@ -8,28 +8,25 @@ module Blooper
 
     def initialize
       super(self.class.name)
-      logger!
-      connect!
-    end
-
-    def logger!
-      level = $VERBOSE && Logger::DEBUG || Logger::INFO
+      self.level = $VERBOSE && Logger::DEBUG || Logger::INFO
       $log = @log
     end
 
-    def connect!
-      $log.info('establishing the database connection')
+    def connect
+      $log.info('Establishing the database connection')
+      $log.debug('Database credential => ' + ARGV.to_s)
       ActiveRecord::Base
         .establish_connection(YAML.load(ARGV.join(" ").gsub(/:/, ': ')))
-      $log.info('a database connection has been initialized')
+      $log.info('A database connection has been initialized')
     end
 
     def run
+      connect
       Input.new(STDIN).each do |rows|
         begin
           rows.save
         rescue ActiveRecord::StatementInvalid
-          $log.warn('a database connection has been lost')
+          $log.warn('A database connection has been lost')
           provide_db
           redo
         end
