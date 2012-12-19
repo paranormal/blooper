@@ -8,7 +8,7 @@ module Blooper
 
     def initialize
       super('Blooper')
-      self.level = Logger::DEBUG if $VERBOSE
+      self.level = $VERBOSE && Logger::DEBUG || Logger::INFO
       self.logger.formatter = formatter
       $log = @log
     end
