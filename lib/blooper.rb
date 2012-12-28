@@ -6,22 +6,31 @@ require_relative 'blooper/model/access.rb'
 module Blooper
   class Application < Logger::Application
 
+    DATE_FORMAT = '%Y/%m/%d %H:%M:%S'
+    LOGGER_LEVEL = Logger::INFO
+
     def initialize
       super('Blooper')
-      self.level = $VERBOSE && Logger::DEBUG || Logger::INFO
+      self.level = $VERBOSE && Logger::DEBUG || LOGGER_LEVEL
       self.logger.formatter = formatter
       $log = @log
     end
 
     def run
       connect
-      Input.new.each do |rows|
+      input = Input.new
+      input.each do |rows|
         begin
           rows.save
-        rescue ActiveRecord::StatementInvalid
-          $log.warn('A database connection has been lost')
-          connect
-          redo
+        rescue ActiveRecord::StatementInvalid => e
+          $log.warn(e.message)
+          case e.message
+          when /PG::Error: : BEGIN/
+            connect
+            retry
+          else
+            next
+          end
         rescue ActiveRecord::UnknownAttributeError => e
           $log.error('Data was not saved => ' + e.message)
           next
@@ -44,7 +53,7 @@ module Blooper
 
     def formatter
        -> severity, datetime, appname, msg do
-        "#{datetime.strftime('%Y/%m/%d %H:%M:%S')} " +
+        "#{datetime.strftime(DATE_FORMAT)} " +
          "#{appname}(#{severity[0]})| " +
          "#{msg}\n"
       end

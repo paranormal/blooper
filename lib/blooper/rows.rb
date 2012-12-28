@@ -10,7 +10,9 @@ module Blooper
     end
 
     def save
-      $log.debug('Data was saved') if Access.new(rows).save!
+      if Access.new(rows).save!
+        $log.debug('Data was saved')
+      end
     end
 
   end
