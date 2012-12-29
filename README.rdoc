@@ -1,7 +1,7 @@
 == Welcome to blooper
 
-Blooper is squid-like creatures that are found in the ocean. It could also write
-squid access log into a database (I believe any sequel-support database).
+Blooper is squid-like creatures that are found in the ocean.
+It could also write squid access log into a database (I believe any sequel-support database).
 
 The idea shamelessly stolen from {logmysqldaemon}[http://sourceforge.net/projects/logmysqldaemon/] script.
 
@@ -11,25 +11,13 @@ The idea shamelessly stolen from {logmysqldaemon}[http://sourceforge.net/project
 
 == Squid configuration
 
-1. The column names are dynamic, put them down into squid logformat.
-Here time is column, %ts.%03tu is value that will have been written into that column.
-
     logformat squid_log time %ts.%03tu response_time %tr src_ip %>a squid_request_status %Ss http_status_code %03>Hs reply_size %<st request_method %rm request_url %ru username %un squid_hier_code %Sh dst_ip %<a mime_type %mt
-
-2. Blooper configuration. This string contains database access information, and squid will be put them down into cache.log. I wish I known how to hide it.
-
     access_log daemon:{adapter:postgres,database:squid,username:squid,password:squid,host:db} squid_log
-
-
-3. Path to blooper executable.
-
-    #path to executable
-    $ which blooper
-    /usr/local/bin/blooper
-
-    in squid.conf:
     logfile_daemon /usr/local/bin/blooper
 
+The column names are dynamic, Here time is column, %ts.%03tu is value that will have been written into that column.
+Second string contains database access information, and squid will be put them down into cache.log. I wish I known how to hide it.
+Third string is full patch to executable ($ which blooper).
 
 == Database configuration
 
