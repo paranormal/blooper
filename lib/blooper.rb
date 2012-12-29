@@ -1,3 +1,4 @@
+require_relative 'blooper/db.rb'
 require_relative 'blooper/input.rb'
 require_relative 'blooper/line.rb'
 require_relative 'blooper/rows.rb'
@@ -12,41 +13,30 @@ module Blooper
       super('Blooper')
       self.level = $VERBOSE && Logger::DEBUG || LOGGER_LEVEL
       self.logger.formatter = formatter
-      $log = @log
+      @input = Input.new
     end
 
     def run
-      connect
-      require_relative 'blooper/model/access.rb'
-      input = Input.new
-      input.each do |rows|
+      @log.info('Establishing the database connection')
+      DB.instance
+      @log.info('A database connection has been established')
+      @input.each do |rows|
         begin
           rows.save
+          $log.debug('Data was saved')
         rescue Sequel::Error => error
-          case error.message
-          when "PG::Error: connection not open\n"
-            connect
+          @log.error(error.message)
+          if error.message.match(/connection not open/)
+            $log.warn('A database connection has been lost, reconnecting...')
+            DB.instance.connect
             retry
-          else
-            $log.error('Data was not saved => ' + e.message)
-            next
           end
+          next
         end
       end
     end
 
     private
-
-    def connect
-      $log.info('Establishing the database connection')
-      Sequel.connect(connect_params)
-      $log.info('A database connection has been established')
-    end
-
-    def connect_params
-      $log.debug('Database credential => ' + ARGV.to_s)
-      YAML.load(ARGV.join(" ").gsub(/:/, ': '))
-    end
 
     def formatter
        -> severity, datetime, appname, msg do

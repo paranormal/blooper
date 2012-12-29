@@ -10,9 +10,7 @@ module Blooper
     end
 
     def save
-      if Access.new(rows).save_changes
-        $log.debug('Data was saved')
-      end
+      DB.instance.insert(rows)
     end
 
   end
