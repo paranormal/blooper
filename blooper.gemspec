@@ -21,7 +21,7 @@ Gem::Specification.new do |s|
   s.date = %q{2012-12-01}
   s.files = %w'bin/blooper lib/blooper.rb lib/blooper/input.rb
               lib/blooper/line.rb lib/blooper/rows.rb
-              lib/blooper/model/access.rb lib/blooper/version.rb
+              lib/blooper/db.rb lib/blooper/version.rb
               COPYING README.rdoc'
   s.require_paths      = ['lib']
   s.executables        = %q(blooper)

@@ -23,14 +23,16 @@ module Blooper
       @input.each do |rows|
         begin
           rows.save
-          $log.debug('Data was saved')
+          @log.debug('Data was saved')
+        rescue Sequel::DatabaseDisconnectError
+          @log.warn('A database connection has been lost, reconnecting...')
+          DB.instance.connect
+          retry
+        rescue Sequel::DatabaseError
+          @log.error('Probably data doesn\'t fit for database')
+          next
         rescue Sequel::Error => error
           @log.error(error.message)
-          if error.message.match(/connection not open/)
-            $log.warn('A database connection has been lost, reconnecting...')
-            DB.instance.connect
-            retry
-          end
           next
         end
       end
