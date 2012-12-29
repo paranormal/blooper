@@ -1,7 +1,6 @@
 require_relative 'blooper/input.rb'
 require_relative 'blooper/line.rb'
 require_relative 'blooper/rows.rb'
-require_relative 'blooper/model/access.rb'
 
 module Blooper
   class Application < Logger::Application
@@ -18,22 +17,20 @@ module Blooper
 
     def run
       connect
+      require_relative 'blooper/model/access.rb'
       input = Input.new
       input.each do |rows|
         begin
           rows.save
-        rescue ActiveRecord::StatementInvalid => e
-          $log.warn(e.message)
-          case e.message
-          when /PG::Error: : BEGIN/
+        rescue Sequel::Error => error
+          case error.message
+          when "PG::Error: connection not open\n"
             connect
             retry
           else
+            $log.error('Data was not saved => ' + e.message)
             next
           end
-        rescue ActiveRecord::UnknownAttributeError => e
-          $log.error('Data was not saved => ' + e.message)
-          next
         end
       end
     end
@@ -42,7 +39,7 @@ module Blooper
 
     def connect
       $log.info('Establishing the database connection')
-      ActiveRecord::Base.establish_connection(connect_params)
+      Sequel.connect(connect_params)
       $log.info('A database connection has been established')
     end
 

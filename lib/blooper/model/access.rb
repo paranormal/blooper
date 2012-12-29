@@ -1,5 +1,3 @@
 module Blooper
-  class Access < ActiveRecord::Base
-    self.primary_key = 'id'
-  end
+  class Access < Sequel::Model; end
 end
