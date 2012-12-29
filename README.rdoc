@@ -7,8 +7,7 @@ The idea shamelessly stolen from {logmysqldaemon}[http://sourceforge.net/project
 
 == Installation
 
-    I make gem when I provide spec.
-    (cd blooper && gem build blooper.gemspec && gem install blooper-1.4.gem)
+    gem install blooper
 
 == Squid configuration
 
