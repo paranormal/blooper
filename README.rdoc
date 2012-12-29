@@ -15,9 +15,11 @@ The idea shamelessly stolen from {logmysqldaemon}[http://sourceforge.net/project
     access_log daemon:{adapter:postgres,database:squid,username:squid,password:squid,host:db} squid_log
     logfile_daemon /usr/local/bin/blooper
 
-The column names are dynamic, Here time is column, %ts.%03tu is value that will have been written into that column.
-Second string contains database access information, and squid will be put them down into cache.log. I wish I known how to hide it.
-Third string is full patch to executable ($ which blooper).
+1. The column names are dynamic, Here time is column, %ts.%03tu is value that will have been written into that column.
+
+2. Second string contains database access information, the credential depends from {adapter}, tested only with postgres.
+
+3. Third string is full patch to executable ($ which blooper).
 
 == Database configuration
 
