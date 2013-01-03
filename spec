@@ -1,5 +1,6 @@
 require_relative "lib/blooper/line"
 
+
 describe Blooper::Line do
 
   before(:all) do
