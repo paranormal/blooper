@@ -1,9 +1,21 @@
+require_relative 'blooper/version.rb'
+BLOOPER_VERSION = Blooper::VERSION
+
 require_relative 'blooper/db.rb'
 require_relative 'blooper/input.rb'
 require_relative 'blooper/line.rb'
 require_relative 'blooper/rows.rb'
 
 module Blooper
+
+  class << self
+    # Current Blooper Application
+    def application
+      @application ||= Application.new
+    end
+  end
+
+
   class Application < Logger::Application
 
     DATE_FORMAT = '%Y/%m/%d %H:%M:%S'
