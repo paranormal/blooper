@@ -27,4 +27,4 @@ An idea shamelessly stolen from {logmysqldaemon}[http://sourceforge.net/projects
     createdb squid
     psql squid < pg.schema
 
-Or use your own schema integration, just write down proper format into squid.conf logformat variable.
+Or use your own schema integration, just write down proper format into squid.conf's logformat variable.
