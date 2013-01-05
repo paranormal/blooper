@@ -1,9 +1,9 @@
 == Welcome to blooper
 
 {Blooper}[http://www.mariowiki.com/Blooper] is squid-like creatures that are found in the ocean.
-It could also write squid access log into a database (I believe any sequel-support database).
+It can also write squid access log into a database (I believe any sequel-support database).
 
-An idea shamelessly stolen from {logmysqldaemon}[http://sourceforge.net/projects/logmysqldaemon/] script.
+The idea is shamelessly stolen from {logmysqldaemon}[http://sourceforge.net/projects/logmysqldaemon/] script.
 
 == Installation
 
@@ -16,15 +16,15 @@ An idea shamelessly stolen from {logmysqldaemon}[http://sourceforge.net/projects
     access_log daemon:{adapter:postgres,database:squid,username:squid,password:squid,host:db} squid_log
     logfile_daemon /usr/local/bin/blooper
 
-1. The column names are dynamic, here time is column, %ts.%03tu is value that will have been written into that column.
+1. The column names are dynamic, here time is a column name, %ts.%03tu is a value that will have been written into that column.
 
-2. Second string contains database access information, the credential depends from {adapter}[http://sequel.rubyforge.org/rdoc/files/doc/opening_databases_rdoc.html], tested only with postgres.
+2. The second string contains database access information, the credential depends on {adapter}[http://sequel.rubyforge.org/rdoc/files/doc/opening_databases_rdoc.html], tested only with postgres.
 
-3. Third string is full patch to executable ($ which blooper).
+3. Third string is full path to executable ($ which blooper).
 
 == Database configuration
 
     createdb squid
     psql squid < pg.schema
 
-Or use your own schema integration, just write down proper format into squid.conf's logformat variable.
+Or use your own schema integration, just specify proper format into the logformat variable in squid.conf.
