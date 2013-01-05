@@ -3,10 +3,11 @@
 {Blooper}[http://www.mariowiki.com/Blooper] is squid-like creatures that are found in the ocean.
 It could also write squid access log into a database (I believe any sequel-support database).
 
-The idea shamelessly stolen from {logmysqldaemon}[http://sourceforge.net/projects/logmysqldaemon/] script.
+An idea shamelessly stolen from {logmysqldaemon}[http://sourceforge.net/projects/logmysqldaemon/] script.
 
 == Installation
 
+    gem install (pg|mysql|oracle|sqlite|etc sequel database adapter)
     gem install blooper
 
 == Squid configuration
@@ -15,7 +16,7 @@ The idea shamelessly stolen from {logmysqldaemon}[http://sourceforge.net/project
     access_log daemon:{adapter:postgres,database:squid,username:squid,password:squid,host:db} squid_log
     logfile_daemon /usr/local/bin/blooper
 
-1. The column names are dynamic, Here time is column, %ts.%03tu is value that will have been written into that column.
+1. The column names are dynamic, here time is column, %ts.%03tu is value that will have been written into that column.
 
 2. Second string contains database access information, the credential depends from {adapter}[http://sequel.rubyforge.org/rdoc/files/doc/opening_databases_rdoc.html], tested only with postgres.
 
@@ -25,3 +26,5 @@ The idea shamelessly stolen from {logmysqldaemon}[http://sourceforge.net/project
 
     createdb squid
     psql squid < pg.schema
+
+Or use your own schema integration, just write down proper format into squid.conf logformat variable.
