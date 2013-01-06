@@ -2,6 +2,8 @@
 
 {Blooper}[http://www.mariowiki.com/Blooper] is squid-like creatures that are found in the ocean.
 It can also write squid access log into a database (I believe any sequel-support database).
+Should you write a squid access log into a data base, you won't have to catch a blooper in the ocean of errors for that.
+I have already tamed one, and you are free to use it.
 
 The idea is shamelessly stolen from {logmysqldaemon}[http://sourceforge.net/projects/logmysqldaemon/] script.
 
@@ -20,11 +22,11 @@ The idea is shamelessly stolen from {logmysqldaemon}[http://sourceforge.net/proj
 
 2. The second string contains database access information, the credential depends on {adapter}[http://sequel.rubyforge.org/rdoc/files/doc/opening_databases_rdoc.html], tested only with postgres.
 
-3. Third string is full path to executable ($ which blooper).
+3. The third string is a full path to the executable ($ which blooper).
 
 == Database configuration
 
     createdb squid
     psql squid < pg.schema
 
-Or use your own schema integration, just specify proper format into the logformat variable in squid.conf.
+Or use your own schema integration, just specify the proper format into the logformat variable in squid.conf.
