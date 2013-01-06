@@ -26,7 +26,6 @@ Gem::Specification.new do |s|
   s.require_paths      = ['lib']
   s.executables        = %q(blooper)
 
-  s.add_dependency('pg', '>=  0.14.0')
   s.add_dependency('sequel', '>=  3.38.0')
   s.add_development_dependency('rspec')
 
