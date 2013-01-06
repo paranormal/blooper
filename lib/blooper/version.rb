@@ -1,3 +1,3 @@
 module Blooper
-  VERSION = "1.4" unless defined?(Blooper::VERSION)
+  VERSION = "1.5" unless defined?(Blooper::VERSION)
 end
