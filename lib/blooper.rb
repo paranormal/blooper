@@ -40,11 +40,8 @@ module Blooper
           @log.warn('A database connection has been lost, reconnecting...')
           DB.instance.connect
           retry
-        rescue Sequel::DatabaseError
-          @log.error('Probably data doesn\'t fit for database')
-          next
         rescue Sequel::Error => error
-          @log.error(error.message)
+          @log.error(error.message.gsub(/\n.*/s, ''))
           next
         end
       end
