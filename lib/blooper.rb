@@ -53,10 +53,9 @@ module Blooper
     private
 
     def formatter
-       -> severity, datetime, appname, msg do
-        "#{datetime.strftime(DATE_FORMAT)} " +
-         "#{appname}(#{severity[0]})| " +
-         "#{msg}\n"
+      -> severity, date_time, app_name, msg do
+        "#{date_time.strftime(DATE_FORMAT)} " +
+        "#{app_name}(#{severity[0]})| #{msg}\n"
       end
     end
 
