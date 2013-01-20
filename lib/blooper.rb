@@ -1,10 +1,10 @@
-require_relative 'blooper/version.rb'
+require 'blooper/version.rb'
 BLOOPER_VERSION = Blooper::VERSION
 
-require_relative 'blooper/db.rb'
-require_relative 'blooper/input.rb'
-require_relative 'blooper/line.rb'
-require_relative 'blooper/rows.rb'
+require 'blooper/db.rb'
+require 'blooper/input.rb'
+require 'blooper/line.rb'
+require 'blooper/rows.rb'
 
 module Blooper
 
