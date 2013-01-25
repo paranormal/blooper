@@ -8,7 +8,11 @@ module Blooper
     end
 
     def valid?
-      @line.match(REG) && @line.split.size.even?
+      @line.match(REG) && even?
+    end
+
+    def even?
+      @line.split.size.even? ? true : raise(ArgumentError)
     end
 
     def clean
