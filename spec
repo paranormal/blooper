@@ -97,7 +97,7 @@ describe Line do
     @line.instance_variable_set(:@line, '')
     @line.should_not be_valid
     @line.instance_variable_set(:@line, @logstr.sub(/513/, ''))
-    expect {@line.valid?}.to raise_error(ArgumentError)
+    @line.should_not be_valid
   end
 
   it "should clean line respectively" do
