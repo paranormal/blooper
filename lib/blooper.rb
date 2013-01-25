@@ -4,7 +4,7 @@ BLOOPER_VERSION = Blooper::VERSION
 require 'blooper/db.rb'
 require 'blooper/input.rb'
 require 'blooper/line.rb'
-require 'blooper/rows.rb'
+require 'blooper/tuple.rb'
 
 module Blooper
 

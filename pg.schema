@@ -34,20 +34,19 @@ SET default_with_oids = false;
 
 CREATE TABLE accesses (
     id integer NOT NULL,
-    "time" timestamp with time zone,
+    "time" timestamp with time zone NOT NULL,
     time_response integer,
-    ip_source inet,
+    ip_source inet NOT NULL,
     ip_destination inet,
     user_name character varying(40),
-    http_status_code numeric(3,0),
-    http_reply_size bigint,
-    http_request_method character varying(15),
-    http_request_url character varying(2083),
+    http_status_code numeric(3,0) NOT NULL,
+    http_reply_size bigint NOT NULL,
+    http_request_method character varying(15) NOT NULL,
+    http_request_url character varying(2083) NOT NULL,
     http_content_type character varying(50),
     squid_hier_code character varying(20),
     squid_request_status character varying(50)
 );
-
 
 ALTER TABLE public.accesses OWNER TO squid;
 
