@@ -1,17 +1,24 @@
 module Blooper
   class Tuple
 
+    NULL = {'-' => nil}
+
     def initialize(line)
       @line = line
     end
 
     def tuples
-      h = Hash[*@line.split]
-      h.merge(h) {|k,v| v.eql?('-') ? nil : v}
+      Hash[*null_convert]
     end
 
     def save
       DB.instance.insert(tuples)
+    end
+
+    private
+
+    def null_convert
+      @line.split.map {|word| NULL.has_key?(word) ? NULL[word] : word}
     end
 
   end

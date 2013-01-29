@@ -61,7 +61,7 @@ describe Tuple do
       @tuple.instance_variable_set(:@line, '')
       @tuple.tuples.should have(0).items
     end
-    it "should convert a pair-words string to hash" do
+    it "should convert a pair-words string into hash" do
       @tuple.instance_variable_set(:@line, 'time 2013-01-20_07:40:39.3N+0200')
       @tuple.tuples.should be_a_kind_of(Hash)
       @tuple.tuples.should have_key('time')
