@@ -1,14 +1,14 @@
 module Blooper
   class Tuple
 
-    NULL = {'-' => nil}
+    SQL = {'-' => nil}
 
     def initialize(line)
       @line = line
     end
 
     def tuples
-      Hash[*null_convert]
+      Hash[*sql]
     end
 
     def save
@@ -17,8 +17,10 @@ module Blooper
 
     private
 
-    def null_convert
-      @line.split.map {|word| NULL.has_key?(word) ? NULL[word] : word}
+    def sql
+      @line.split.map do |raw|
+        SQL.has_key?(raw) ? SQL[raw] : raw
+      end
     end
 
   end
