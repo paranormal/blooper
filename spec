@@ -1,3 +1,5 @@
+# encoding: utf-8
+
 require_relative 'lib/blooper/input'
 require_relative 'lib/blooper/line'
 require_relative 'lib/blooper/tuple'
@@ -6,32 +8,16 @@ include Blooper
 
 describe Input do
 
-  context 'new object creation' do
-    it "should accept input and map it to @input" do
-      input = Input.new('aoeu')
-      input.instance_variable_get(:@input).should be_true
-    end
-    it "should map @input to STDIN if no input were given" do
-      stdin = stub_const("STDIN", Class.new)
-      input = Input.new
-      input.instance_variable_get(:@input).equal?(stdin).should be_true
-    end
+  before(:each) do
+    @stdin = stub_const("STDIN", Class.new)
   end
 
-  context 'iteration behaviour' do
-
-    before(:each) do
-      @stdin = stub_const("STDIN", Class.new)
+  it "should return correct line" do
+    @stdin.should_receive(:each).and_yield('Ltime 2013-01-20_07:40:39.3N+0200')
+    Input.each do |rows|
+      rows.should be_a_kind_of(Tuple)
+      rows.instance_variable_get(:@line).should eql('time 2013-01-20_07:40:39.3N+0200')
     end
-
-    it "should return correct line" do
-      @stdin.should_receive(:each).and_yield('Ltime 2013-01-20_07:40:39.3N+0200')
-      Input.new.each do |rows|
-        rows.should be_a_kind_of(Tuple)
-        rows.instance_variable_get(:@line).should eql('time 2013-01-20_07:40:39.3N+0200')
-      end
-    end
-
   end
 
 end
@@ -102,6 +88,11 @@ describe Line do
 
   it "should clean line respectively" do
     @line.clean.should eql(@logstr.sub(Line::REG, ''))
+  end
+
+  it "should recognise bad encoding" do
+    @line.instance_variable_set(:@line, @logstr.sub(/513/, '543|Misérаblesё'))
+    @line.should be_valid
   end
 
 end

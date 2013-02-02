@@ -25,16 +25,15 @@ module Blooper
       super('Blooper')
       self.level = $VERBOSE && Logger::DEBUG || LOGGER_LEVEL
       self.logger.formatter = formatter
-      @input = Input.new
     end
 
     def run
       @log.info('Establishing the database connection')
       DB.instance
       @log.info('A database connection has been established')
-      @input.each do |rows|
+      Input.each do |tuple|
         begin
-          rows.save
+          tuple.save
           @log.debug('Data was saved')
         rescue Sequel::DatabaseDisconnectError
           @log.warn('A database connection has been lost, reconnecting...')
