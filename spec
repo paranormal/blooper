@@ -1,4 +1,5 @@
 # encoding: utf-8
+require 'ap'
 
 require_relative 'lib/blooper/input'
 require_relative 'lib/blooper/line'
@@ -14,6 +15,7 @@ describe Input do
 
   it "should return correct line" do
     @stdin.should_receive(:each).and_yield('Ltime 2013-01-20_07:40:39.3N+0200')
+    @stdin.should_receive(:set_encoding).with('UTF-8')
     Input.each do |rows|
       rows.should be_a_kind_of(Tuple)
       rows.instance_variable_get(:@line).should eql('time 2013-01-20_07:40:39.3N+0200')
@@ -92,6 +94,8 @@ describe Line do
 
   it "should recognise bad encoding" do
     @line.instance_variable_set(:@line, @logstr.sub(/513/, '543|Misérаblesё'))
+    @line.should be_valid
+    @line.instance_variable_set(:@line, @logstr.sub(/513/, 'q=��������+�����+������+���������+�������&src=IE-Address'))
     @line.should be_valid
   end
 
