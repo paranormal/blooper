@@ -1,11 +1,11 @@
 # Welcome to blooper [![Code Climate](https://codeclimate.com/github/paranormal/blooper.png)](https://codeclimate.com/github/paranormal/blooper)
 
-{Blooper}[http://www.mariowiki.com/Blooper] is squid-like creatures that are found in the ocean.
+[Blooper](http://www.mariowiki.com/Blooper) is squid-like creatures that are found in the ocean.
 It can also write squid access log into a database (I believe any sequel-support database).
 Should you write a squid access log into a data base, you won't have to catch a blooper in the ocean of errors for that.
 I have already tamed one, and you are free to use it.
 
-The idea is shamelessly stolen from {logmysqldaemon}[http://sourceforge.net/projects/logmysqldaemon/] script.
+The idea is shamelessly stolen from [logmysqldaemon](http://sourceforge.net/projects/logmysqldaemon/) script.
 
 == Installation
 
