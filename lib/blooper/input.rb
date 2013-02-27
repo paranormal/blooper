@@ -1,15 +1,19 @@
 module Blooper
-  module Input
+  class Input
 
-    def each(input = STDIN)
-      input.set_encoding('UTF-8')
-      input.each do |line|
+    attr_reader :flow
+
+    def initialize(flow = STDIN)
+      @flow = flow
+      @flow.set_encoding('UTF-8')
+    end
+
+    def self.each(*args)
+      Input.new(*args).flow.each do |line|
         line = Line.new(line)
         yield Tuple.new(line.clean) if line.valid?
       end
     end
-
-    module_function :each
 
   end
 end
