@@ -11,15 +11,17 @@ describe Input do
 
   before(:each) do
     @stdin = stub_const("STDIN", Class.new)
+    @stdin.stub(set_encoding: 'UTF-8')
+  end
+
+  it 'should bind proper flow' do
+    Input.new.flow.should eql(@stdin)
+    Input.new(STDIN).flow.should eql(@stdin)
   end
 
   it "should return correct line" do
     @stdin.should_receive(:each).and_yield('Ltime 2013-01-20_07:40:39.3N+0200')
-    @stdin.should_receive(:set_encoding).with('UTF-8')
-    Input.each do |rows|
-      rows.should be_a_kind_of(Tuple)
-      rows.instance_variable_get(:@line).should eql('time 2013-01-20_07:40:39.3N+0200')
-    end
+    expect {|b| Input.each(&b) }.to yield_with_args(Tuple)
   end
 
 end

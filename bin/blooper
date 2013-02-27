@@ -1,9 +1,9 @@
 #!/usr/bin/env ruby
 
-# $VERBOSE = true
-# require 'ap'
+$VERBOSE = true
+require 'ap'
 
 %w{logger singleton yaml sequel}.each {|lib| require lib}
-require 'blooper'
+require_relative '../lib/blooper'
 
 Blooper.application.start
