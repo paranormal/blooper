@@ -4,6 +4,6 @@
 # require 'ap'
 
 %w{logger singleton yaml sequel}.each {|lib| require lib}
-require '../lib/blooper'
+require 'blooper'
 
 Blooper.application.start
