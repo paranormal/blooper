@@ -1,4 +1,3 @@
-# encoding: utf-8
 require File.expand_path("../lib/blooper/version", __FILE__)
 
 Gem::Specification.new do |s|
@@ -16,13 +15,13 @@ Gem::Specification.new do |s|
   s.required_rubygems_version = '>= 1.3.6'
   s.required_ruby_version     = '>= 1.9.0'
   s.rubygems_version = %q{1.8.24}
-  s.add_development_dependency 'rspec', '~> 2.0'
+  s.add_development_dependency 'rspec', '~> 2.11'
 
   s.date = %q{2012-12-01}
   s.files = %w'bin/blooper lib/blooper.rb lib/blooper/input.rb
               lib/blooper/line.rb lib/blooper/tuple.rb
               lib/blooper/db.rb lib/blooper/version.rb
-              COPYING README.rdoc'
+              COPYRIGHT README.md'
   s.require_paths      = ['lib']
   s.executables        = %q(blooper)
 
