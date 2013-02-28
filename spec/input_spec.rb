@@ -11,6 +11,7 @@ module Blooper
     it 'should bind proper flow' do
       Input.new.flow.should eql(@stdin)
       Input.new(STDIN).flow.should eql(@stdin)
+      Input.new(STDOUT).flow.should_not eql(@stdin)
     end
 
     it "should return correct line" do
