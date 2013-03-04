@@ -21,7 +21,7 @@ Gem::Specification.new do |s|
   s.files = %w'bin/blooper lib/blooper.rb lib/blooper/input.rb
               lib/blooper/line.rb lib/blooper/tuple.rb
               lib/blooper/db.rb lib/blooper/version.rb
-              COPYRIGHT README.md'
+              COPYING README.md'
   s.require_paths      = ['lib']
   s.executables        = %q(blooper)
 
