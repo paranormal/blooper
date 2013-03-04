@@ -17,7 +17,7 @@ Gem::Specification.new do |s|
   s.rubygems_version = %q{1.8.24}
   s.add_development_dependency 'rspec', '~> 2.11'
 
-  s.date = %q{2012-12-01}
+  s.date = %q{2013-03-04}
   s.files = %w'bin/blooper lib/blooper.rb lib/blooper/input.rb
               lib/blooper/line.rb lib/blooper/tuple.rb
               lib/blooper/db.rb lib/blooper/version.rb
