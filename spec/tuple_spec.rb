@@ -4,7 +4,7 @@ module Blooper
   describe Tuple do
 
     before(:each) do
-      @line = mock("time 2013-01-20_07:40:39.3N+0200")
+      @line = mock('time 2013-01-20_07:40:39.3N+0200')
       @tuple = Tuple.new(@line)
     end
 
@@ -22,21 +22,21 @@ module Blooper
     end
 
     context 'instance tuples method' do
-      it "should return an empty hash for empty string" do
+      it 'should return an empty hash for empty string' do
         @tuple.instance_variable_set(:@line, '')
         @tuple.tuples.should have(0).items
       end
-      it "should convert a pair-words string into hash" do
-        @tuple.instance_variable_set(:@line, 'time 2013-01-20_07:40:39.3N+0200')
+      it 'should convert a pair-words string into hash' do
+        @tuple.instance_variable_set(:@line, 'time 2013-01-20_07:40:39.3N+020')
         @tuple.tuples.should be_a_kind_of(Hash)
         @tuple.tuples.should have_key('time')
-        @tuple.tuples.should have_value('2013-01-20_07:40:39.3N+0200')
+        @tuple.tuples.should have_value('2013-01-20_07:40:39.3N+020')
       end
-      it "should raise ArgumentError for non pair-words string" do
+      it 'should raise ArgumentError for non pair-words string' do
         @tuple.instance_variable_set(:@line, 'time ')
-        expect {@tuple.tuples}.to raise_error(ArgumentError)
+        expect { @tuple.tuples }.to raise_error(ArgumentError)
       end
-      it "should convert a - into nil value" do
+      it 'should convert a - into nil value' do
         @tuple.instance_variable_set(:@line, 'time -')
         @tuple.tuples.should have_key('time')
         @tuple.tuples.should have_value(nil)

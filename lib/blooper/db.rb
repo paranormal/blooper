@@ -19,7 +19,7 @@ module Blooper
     private
 
     def credentials
-      YAML.load(ARGV.join(" ").gsub(/:/, ': '))
+      YAML.load(ARGV.join(' ').gsub(/:/, ': '))
     end
 
   end

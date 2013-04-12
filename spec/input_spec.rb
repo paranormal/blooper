@@ -4,7 +4,7 @@ module Blooper
   describe Input do
 
     before(:each) do
-      @stdin = stub_const("STDIN", Class.new)
+      @stdin = stub_const('STDIN', Class.new)
       @stdin.stub(set_encoding: 'UTF-8')
     end
 
@@ -14,9 +14,10 @@ module Blooper
       Input.new(STDOUT).flow.should_not eql(@stdin)
     end
 
-    it "should return correct line" do
-      @stdin.should_receive(:each).and_yield('Ltime 2013-01-20_07:40:39.3N+0200')
-      expect {|b| Input.each(&b) }.to yield_with_args(Tuple)
+    it 'should return correct line' do
+      mock_str = 'Ltime 2013-01-20_07:40:39.3N+0200'
+      @stdin.should_receive(:each).and_yield(mock_str)
+      expect { |b| Input.each(&b) }.to yield_with_args(Tuple)
     end
 
   end
