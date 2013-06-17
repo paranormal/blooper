@@ -42,8 +42,8 @@ CREATE TABLE accesses (
     http_status_code numeric(3,0) NOT NULL,
     http_reply_size bigint NOT NULL,
     http_request_method character varying(15) NOT NULL,
-    http_request_url character varying(2083) NOT NULL,
-    http_content_type character varying(50),
+    http_request_url character varying(4166) NOT NULL,
+    http_content_type character varying(100),
     squid_hier_code character varying(20),
     squid_request_status character varying(50)
 );
