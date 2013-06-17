@@ -18,7 +18,7 @@ The idea is shamelessly stolen from [logmysqldaemon](http://sourceforge.net/proj
     access_log daemon:{adapter:postgres,database:squid,username:squid,password:squid,host:db,encoding:utf8} squid_log
     logfile_daemon /usr/local/bin/blooper
 
-1. The column names are dynamic, here time is a column name, [%{%Y-%m-%d_%H:%M:%S%z}](http://www.squid-cache.org/Versions/v3/3.2/cfgman/logformat.html) is a value that will be written into that column.
+1. The column names are dynamic, here time is a column name, [%{%Y-%m-%d_%H:%M:%S%z}](http://www.squid-cache.org/Versions/v3/3.3/cfgman/logformat.html) is a value that will be written into that column.
 
 2. The second string contains database access information, the credential depends on [adapter](http://sequel.rubyforge.org/rdoc/files/doc/opening_databases_rdoc.html), tested only with postgres.
 
