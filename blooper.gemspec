@@ -5,7 +5,7 @@ Gem::Specification.new do |s|
   s.version            = Blooper::VERSION
   s.platform           = Gem::Platform::RUBY
   s.authors            = ['paranormal']
-  s.email              = %q{mbsd@isgroup.com.ua}
+  s.email              = %q{clutton@lavabit.com}
   s.homepage           = 'https://github.com/paranormal/blooper'
   s.summary            = %q{squid's access log collector — Read more}
   s.description        = %q{work through squid access log daemon}
