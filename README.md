@@ -14,7 +14,7 @@ The idea is shamelessly stolen from [logmysqldaemon](http://sourceforge.net/proj
 
 # Squid configuration
 
-    logformat squid_log time %{%Y-%m-%d_%H:%M:%S%z}tl time_response %tr ip_source %>a squid_request_status %Ss http_status_code %03>Hs http_reply_size %<st http_request_method %rm http_request_url %ru user_name %un squid_hier_code %Sh ip_destination %<a http_content_type %mt
+    logformat squid_log time %{%Y-%m-%d_%H:%M:%S%z}tl time_response %tr mac_source %>eui ip_source %>a squid_request_status %Ss http_status_code %03>Hs http_reply_size %<st http_request_method %rm http_request_url %ru user_name %un squid_hier_code %Sh ip_destination %<a http_content_type %mt
     access_log daemon:{adapter:postgres,database:squid,username:squid,password:squid,host:db,encoding:utf8} squid_log
     logfile_daemon /usr/local/bin/blooper
 
@@ -27,6 +27,7 @@ The idea is shamelessly stolen from [logmysqldaemon](http://sourceforge.net/proj
 # Database configuration
 
     createdb squid
-    psql squid < sql/pg.schema
+    psql squid < sql/pg_schema.sql
+    psql squid < sql/pg_data.sql
 
 Or use your own schema integration, just specify the proper format into the logformat variable in squid.conf.

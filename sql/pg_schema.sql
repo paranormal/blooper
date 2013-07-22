@@ -36,6 +36,7 @@ CREATE TABLE accesses (
     id integer NOT NULL,
     "time" timestamp with time zone NOT NULL,
     time_response integer,
+    mac_source macaddr,
     ip_source inet NOT NULL,
     ip_destination inet,
     user_name character varying(40),
