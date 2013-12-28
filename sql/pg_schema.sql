@@ -115,6 +115,12 @@ ALTER TABLE ONLY http_statuses
 
 
 --
+-- Name: accesses_time_idx; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE INDEX accesses_time_idx ON accesses USING btree ("time");
+
+--
 -- Name: accesses_http_request_method_fkey; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
