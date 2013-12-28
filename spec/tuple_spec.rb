@@ -4,7 +4,7 @@ module Blooper
   describe Tuple do
 
     before(:each) do
-      @line = mock('time 2013-01-20_07:40:39.3N+0200')
+      @line = double('time 2013-01-20_07:40:39.3N+0200')
       @tuple = Tuple.new(@line)
     end
 
