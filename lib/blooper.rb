@@ -1,3 +1,6 @@
+require 'logger' 
+require 'logger-application' unless defined?(Logger::Application)
+
 require 'blooper/version.rb'
 BLOOPER_VERSION = Blooper::VERSION
 
